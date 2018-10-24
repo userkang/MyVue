@@ -20,7 +20,9 @@ class Observer {
       enumerable: true,
       configurable: true,
       get() {
+        // 如果当前有缓存订阅者，就添加一个新订阅者
         if (Dep.target) {
+          // 添加一个订阅者
           dep.addSub(Dep.target)
         }
         return val
@@ -30,12 +32,14 @@ class Observer {
           return
         }
         val = newVal
+        // 如果数据有变化，通知所有订阅者
         dep.notify()
       }
     })
   }
 }
 
+// 消息订阅器
 export class Dep {
   constructor() {
     this.subs = []
@@ -47,6 +51,7 @@ export class Dep {
 
   notify() {
     this.subs.forEach(sub => {
+      // 调用订阅者的 update 方法
       sub.update()
     })
   }
