@@ -4,9 +4,7 @@ import { Watcher } from './watcher.js'
  * 解析器
  * 1、解析模版指令，并替换模版数据，初始化视图
  * 2、将模版指令对应的节点绑定对应的更新函数，初始化相应的订阅器
- *
  */
-
 export class Compile {
   constructor(el, vm) {
     this.vm = vm
@@ -64,13 +62,16 @@ export class Compile {
     Array.prototype.forEach.call(nodeAttrs, attr => {
       let attrName = attr.name
 
+      // 是否是指令属性
       if (this.isDirective(attrName)) {
         const exp = attr.value
         const dir = attrName.substring(2)
 
+        // 是否是事件指令属性
         if (this.isEventDirective(dir)) {
           this.compileEvent(node, exp, dir)
         } else {
+          // v-model 指令
           this.compileModel(node, exp)
         }
         node.removeAttribute(attrName)
