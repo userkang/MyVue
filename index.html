@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>myVue</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>myVue</title>
-</head>
-
-<body>
-  <div id="app">
-    <input type="text" v-model="text">
-    <h1>{{text}}</h1>
-    <h2>{{text}}</h2>
-    <button v-on:click="clickToChange">reset</button>
-  </div>
-</body>
-<script src="./dist/myvue.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    new MyVue({
-      el: '#app',
-      data: {
-        text: '',
-      },
-      methods: {
-        clickToChange() {
+  <body>
+    <div id="app">
+      <input type="text" v-model="text" />
+      <h1>{{ text }}</h1>
+      <h2>{{ text }}</h2>
+      <button v-on:click="clickToChange">reset</button>
+    </div>
+  </body>
+  <script src="./dist/myvue.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      new MyVue({
+        el: '#app',
+        data: {
+          text: ''
+        },
+        methods: {
+          clickToChange() {
+            this.text = 'myVue'
+          }
+        },
+        mounted() {
           this.text = 'myVue'
         }
-      },
-      mounted() {
-        this.text = 'myVue'
-      }
+      })
     })
-  })
-</script>
-
+  </script>
 </html>

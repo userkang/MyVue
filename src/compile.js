@@ -45,7 +45,7 @@ export class Compile {
       if (this.isElementNode(node)) {
         this.compile(node)
       } else if (this.isTextNode(node) && reg.test(text)) {
-        this.compileText(node, reg.exec(text)[1])
+        this.compileText(node, reg.exec(text)[1].trim())
       }
 
       // 如果有子节点，递归编译
